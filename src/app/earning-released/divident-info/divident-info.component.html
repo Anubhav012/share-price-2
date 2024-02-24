@@ -1,0 +1,22 @@
+<p>divident-info works!</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th (click)="sortDividends('symbol')">Symbol</th>
+        <th (click)="sortDividends('dividend')">Dividend</th>
+        <th (click)="sortDividends('recordDate')">Record Date</th>
+        <th (click)="sortDividends('date')">Date</th>
+        <th (click)="sortDividends('paymentDate')">Payment Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dividend of dividents; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ dividend.symbol }}</td>
+            <td>{{ dividend.dividend }}</td>
+            <td>{{ dividend.recordDate }}</td>
+            <td>{{ dividend.date }}</td>
+            <td>{{ dividend.paymentDate }}</td>
+    </tbody>
+  </table>

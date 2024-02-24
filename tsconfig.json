@@ -24,6 +24,7 @@
     ]
   },
   "angularCompilerOptions": {
+    "types": ["tslib", "node"],
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

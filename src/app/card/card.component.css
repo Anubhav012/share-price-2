@@ -1,0 +1,91 @@
+/* card.component.css */
+.earnings-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    width: 300px;
+    background-color: #b9d1df;
+    text-align: center;
+}
+.flex-containerCompany{
+  padding-right: 30px;
+  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+  .percentage-change {
+    color: red;
+    float: right;
+  }
+  .greentext {
+    color: green;
+    /* Additional styles for positive growth */
+  }
+  
+  .redtext {
+    color: red;
+    /* Additional styles for negative growth */
+  }
+  .price-change{
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.company-name{    
+    color: #000;
+    font: 700 13px Roboto,sans-serif;
+    margin-bottom: 13px;
+  }
+  .earnings-value{
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  
+  .company-name {
+    display: inline;
+  }
+  
+  .earnings-value {
+    display: inline;
+  }
+  .commonTable {
+    width: 100%;
+    text-align: right;
+  }
+  
+  .th,
+  .td {
+    padding: 8px;
+    text-align: center;
+  }
+  .table td:nth-child(4) {
+    text-align: right; /* Adjust the width as needed */
+  }
+  th{
+    font-size: 13px;
+    color: gray;
+  }
+
+  .DividentValue{
+    font-size: 13px;
+    color: gray;
+  }
+  .earnings-table{
+    padding-bottom: 40px;
+  }
+  .rightSide{
+    padding-right: 30px;
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .DividentMode {
+    margin-left: 15px; 
+    display: inline; 
+  }
+

@@ -1,0 +1,72 @@
+<li class="earnings-card">
+    <div class="flex-containerCompany " style="display: inline;">
+      <p class="date" style="display: inline;">{{ date }}</p>
+      <span class="rightSide" style="display: inline;">Rs.Cr.</span>
+    </div>
+    <div class="flex-containerCompany">
+      <h3 class="company-name" style="display: inline;">
+        <a [href]="" target="_blank" class="company-link">{{ companyName }}</a>
+      </h3>
+      <p class="earnings-value" style="display: inline;">
+        {{ price }}
+        <span [class.greentext]="{'greentext': priceChange >0, 'redtext': priceChange < 0}" style="display: inline;"> {{'(' +priceChange+ ')'}}</span>
+      </p>
+    </div>    
+    <table class="earnings-table" cellpadding="0" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class ="Earning-table-Head"width="27%">Q3-FY23</th>
+          <th width="20%">Dec 23</th>
+          <th width="23%">Dec 22</th>
+          <th width="10%">Growth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Revenue</td>
+          <td>{{ revenueQ3FY23 }}</td>
+          <td>{{ revenueDec23 }}</td>
+          <td [class.greentext]="{'greentext': revenueGrowth >0, 'redtext': revenueGrowth < 0}">{{ revenueGrowth }}%</td>
+        </tr>
+        <tr>
+          <td>Gross Profit</td>
+          <td>{{ grossProfitQ3FY23 }}</td>
+          <td>{{ grossProfitDec23 }}</td>
+          <td [class.greentext]="{'greentext': grossProfitGrowth >0, 'redtext': grossProfitGrowth < 0}">{{ grossProfitGrowth }}%</td>
+        </tr>
+        <tr>
+          <td>Net Profit</td>
+          <td>{{ netProfitQ3FY23 }}</td>
+          <td>{{ netProfitDec23 }}</td>
+          <td [class.greentext]="{'greentext': netProfitGrowth >0, 'redtext': netProfitGrowth < 0}">{{ netProfitGrowth }}%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="Divident">
+      <span *ngIf="!displayDividentDate; else showFullTable;">
+      <p class="Divided" style="display: inline;">Divident - {{ Divident }}</p>
+      <!-- <button class="DividentMode" (click)="displayDate()" style="display: inline;">More Info</button> -->
+      <button type="button" class="btn btn-outline-primary btn-sm DividentMode " (click)="displayDate()">More Info</button>
+    </span>
+      <ng-template #showFullTable>
+      <table>
+        <thead>
+          <th width="25%">Divident</th>
+          <th width="25%">Record Date</th>
+          <th width="25%">Ex-Date</th>
+          <th width="25%">Pay Date</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{Divident}}</td>
+            <td class=" DividentValue">{{RecordDate}}</td>
+            <td class=" DividentValue">{{ExDate}}</td>
+            <td class=" DividentValue">{{PayDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+    </div>
+    <p class="bottom-text">{{ earningsType }}</p>
+  </li>
+  
