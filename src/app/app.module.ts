@@ -8,7 +8,7 @@ import { EarningReleasedComponent } from './earning-released/earning-released.co
 import { Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { DividentReleasedComponent } from './earning-released/divident-released/divident-released.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DividentInfoComponent } from './earning-released/divident-info/divident-info.component';
 import { DatePipe } from '@angular/common';
 
@@ -39,7 +39,7 @@ const appRoutes: Routes = [
     DividentReleasedComponent,
     DividentInfoComponent
   ],
-  imports: [BrowserModule,HttpClientModule,FormsModule],
+  imports: [BrowserModule,HttpClientModule,FormsModule,ReactiveFormsModule],
   providers: [
     DatePipe,
   ],

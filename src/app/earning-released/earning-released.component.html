@@ -23,10 +23,32 @@
       <li class="nav-item" role="presentation">
         <button class="nav-link rounded-5" [class.active]="activeTab === 'custom-date'" id="custom-date-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('custom-date')">Custom Date</button>
         <div class="calendar"></div>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link rounded-5" [class.active]="activeTab === 'dividend'" id="dividend-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('dividend')">Divident</button>
+      <div class="calendar"></div>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0" [formGroup]="searchForm">
+      <div class="input-group">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" formControlName="query">
+        <div class="input-group-append">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </div>
+    
+      <!-- Display the dropdown with search results -->
+      <div *ngIf="searchResults.length > 0" class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Search Results
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <!-- Display top 5 search results -->
+          <a *ngFor="let result of searchResults.slice(0, 5)" class="dropdown-item" (click)="selectResult(result)">{{ result.symbol }}</a>
+        </div>
+      </div>
+    </form>
   </div>
 </nav>
-<app-divident-released (dividentData)="handleDividentData($event)"></app-divident-released>
-
-<app-divident-info [divident]="dividends"></app-divident-info>
+<app-divident-released *ngIf="onDividendButtonClicked" (dividentData)="handleDividentData($event)"></app-divident-released>
+<app-divident-info *ngIf="onDividendButtonClicked" [divident]="dividends"></app-divident-info>
+<app-card *ngIf="!onDividendButtonClicked"></app-card>

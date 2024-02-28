@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NseDataService } from './nse-data.service';
+import { StockLiveDataService } from './stock-live-data.service';
 
-describe('NseDataService', () => {
-  let service: NseDataService;
+describe('StockLiveDataService', () => {
+  let service: StockLiveDataService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NseDataService);
+    service = TestBed.inject(StockLiveDataService);
   });
 
   it('should be created', () => {

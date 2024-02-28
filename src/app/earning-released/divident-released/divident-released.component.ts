@@ -4,6 +4,7 @@ import { DividentEarningSharedService } from 'src/app/Service/divident-earning-s
 import { StockDividendService } from 'src/app/Service/stock-dividend.service';
 import { DividendInfo } from './dividend-info.model';
 import { DbRequestService } from 'src/app/Service/db-request.service';
+import { StockLiveDataService } from 'src/app/Service/stock-live-data.service';
 
 @Component({
   selector: 'app-divident-released',
@@ -14,13 +15,16 @@ export class DividentReleasedComponent implements OnInit {
   @Output() dividentData = new EventEmitter<DividendInfo[]>();
   public dividends: DividendInfo[] = [];
   public dividendsunSanitize: DividendInfo[] = [];
+  stockData: any[] = [];
+
 
 
   constructor(
     private stockDividendService: StockDividendService,
     private datePipe: DatePipe,
     private dividentEarningSharedService: DividentEarningSharedService,
-    private dbRequestService: DbRequestService
+    private dbRequestService: DbRequestService,
+    private stockLiveDataService:StockLiveDataService
   ) {}
 
   ngOnInit(): void {
@@ -41,8 +45,21 @@ export class DividentReleasedComponent implements OnInit {
         .getStockDividends(formattedStartDate, formattedEndDate)
         .subscribe((data) => {
           this.dividendsunSanitize=data;
-          console.log(this.dividendsunSanitize);
+          this.dbRequestService.postDividendData(data);
+          console.log('Data before - ',data);
+          this.dbRequestService.fetchData()
+          .subscribe(
+            Response => {
+              console.log('Response - ', Response[0]);
+              this.dbRequestService.fetchDataa = Response;
+              console.log('this.fetchDataa - ', this.dbRequestService.fetchDataa);
+            }
+          );
+          data.push(this.dbRequestService.fetchDataa[0]);
+          console.log('Data - ',data);
+
           // Remove ".NS" or ".BO" from symbols in the dividends array
+          if(data.length>1){
           const sanitizedData = this.sanitizeSymbols(data);
           const isSymbolEqual = (obj1: DividendInfo, obj2: DividendInfo) => obj1.symbol === obj2.symbol;          
           const uniqueData = sanitizedData.filter((value, index, self) =>
@@ -54,6 +71,7 @@ export class DividentReleasedComponent implements OnInit {
           // Send sanitized data to dividentEarningSharedService
           this.dividentEarningSharedService.sendChildData(this.dividends);
           this.dividentData.emit(this.dividends);
+          }
         });
     } else {
       console.error('Error: Formatted dates are null.');
@@ -66,42 +84,23 @@ export class DividentReleasedComponent implements OnInit {
     result.setMonth(result.getMonth() + monthsToAdd);
     return result;
   }
-
-  private sanitizeSymbols(data: any[]): any[] {
-    return data.map((item) => {
-      return {
-        ...item,
-        symbol: item.symbol.replace('.NS', '').replace('.BO', ''),
-      };
+  refreshData(): void {
+    this.stockLiveDataService.getAllStockData().subscribe(data => {
+      this.stockData = data;
     });
   }
 
-  // private postDividendDataToDb(dividends: DividendInfo[]): void {
-  //   dividends.forEach((dividend) => {
-  //     this.dbRequestService.postDividendData(dividend).subscribe(
-  //       response => {
-  //         console.log('Data posted successfully:', response);
-  //         // You can perform any additional actions if needed
-  //       },
-  //       error => {
-  //         console.error('Error posting data:', error);
-  //         // You can perform any additional error handling if needed
-  //       }
-  //     );
-  //   });
-  // }
-  // fetchDividendDataFromDb(startDate: string, endDate: string): void {
-  //   this.dbRequestService.fetchDividendData(startDate, endDate).subscribe(
-  //     (data) => {
-  //       // Handle the fetched data as needed
-  //       console.log('Data fetched from DB:', data);
-  //       // Send the fetched data back to the parent component
-  //       this.dividentData.emit(data);
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching data from DB:', error);
-  //       // Handle the error or notify the user as needed
-  //     }
-  //   );
-  // }
-}
+
+  private sanitizeSymbols(data: any[]): any[] {
+    return Object.values(data).map((item) => {
+      const symbol = item.symbol || ''; // Use an empty string if symbol is undefined
+      if (symbol === '') {
+        console.log('Undefined symbol found:', item);
+      }
+      return {
+        ...item,
+        symbol: symbol.replace('.NS', '').replace('.BO', ''),
+      };
+    });
+  }
+}  
