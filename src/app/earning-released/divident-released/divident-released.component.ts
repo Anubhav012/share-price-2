@@ -24,7 +24,7 @@ export class DividentReleasedComponent implements OnInit {
     private datePipe: DatePipe,
     private dividentEarningSharedService: DividentEarningSharedService,
     private dbRequestService: DbRequestService,
-    private stockLiveDataService:StockLiveDataService
+    private stockLiveDataService:StockLiveDataService,
   ) {}
 
   ngOnInit(): void {
@@ -47,6 +47,13 @@ export class DividentReleasedComponent implements OnInit {
           this.dividendsunSanitize=data;
           this.dbRequestService.postDividendData(data);
           console.log('Data before - ',data);
+          this.stockLiveDataService.getAllStockData().subscribe(
+            Response => {
+              console.log('Response - ', Response[0]);
+              console.log('tPrice - ', Response);
+            }
+          );
+          console.log('Price - ',this.stockLiveDataService.getAllStockData());
           this.dbRequestService.fetchData()
           .subscribe(
             Response => {

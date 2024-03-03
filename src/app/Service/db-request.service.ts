@@ -34,7 +34,7 @@ export class DbRequestService {
 
 postDividendData(dividend: DividendInfo[]): Observable<any> {
   const existingData$ = this.fetchData();
-
+console.log('existing data - ',this.fetchData());
   return existingData$.pipe(
     switchMap((existingData: DividendInfo[]) => {
       const uniqueData = dividend.filter(newDividend =>

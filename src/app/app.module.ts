@@ -11,6 +11,7 @@ import { DividentReleasedComponent } from './earning-released/divident-released/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DividentInfoComponent } from './earning-released/divident-info/divident-info.component';
 import { DatePipe } from '@angular/common';
+import { CountdownTimerComponent } from './countdown-timer/countdown-timer.component';
 
 
 const appRoutes: Routes = [
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     CardComponent,
     EarningReleasedComponent,
     DividentReleasedComponent,
-    DividentInfoComponent
+    DividentInfoComponent,
+    CountdownTimerComponent
   ],
   imports: [BrowserModule,HttpClientModule,FormsModule,ReactiveFormsModule],
   providers: [

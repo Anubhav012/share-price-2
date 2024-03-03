@@ -1,30 +1,30 @@
 <!-- <div *ngFor="let item of filteredData">
     {{ item.symbol }} - {{ item.title }}
   </div> -->
-
+  <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #0e8be5;">
   <div class="container-fluid">
     <ul class="nav nav-pills nav-fill gap-2 p-1 small" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-black); --bs-nav-pills-link-active-color: var(--bs-light); --bs-nav-pills-link-active-bg: var(--bs-primary);">
       <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" [class.active]="activeTab === 'yesterday'" id="yesterday-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('yesterday')">Yesterday</button>
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'yesterday'" id="yesterday-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('yesterday')">Yesterday</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" [class.active]="activeTab === 'today'" id="today-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('today')">Today</button>
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'today'" id="today-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('today')">Today</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" [class.active]="activeTab === 'tomorrow'" id="tomorrow-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('tomorrow')">Tomorrow</button>
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'tomorrow'" id="tomorrow-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('tomorrow')">Tomorrow</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" [class.active]="activeTab === 'this-week'" id="this-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('this-week')">This Week</button>
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'this-week'" id="this-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('this-week')">This Week</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" [class.active]="activeTab === 'next-week'" id="next-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('next-week')">Next Week</button>
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'next-week'" id="next-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('next-week')">Next Week</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" [class.active]="activeTab === 'custom-date'" id="custom-date-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('custom-date')">Custom Date</button>
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'custom-date'" id="custom-date-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('custom-date')">Custom Date</button>
         <div class="calendar"></div>
       <li class="nav-item" role="presentation">
-        <button class="nav-link rounded-5" [class.active]="activeTab === 'dividend'" id="dividend-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('dividend')">Divident</button>
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'dividend'" id="dividend-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('dividend')">Dividend</button>
       <div class="calendar"></div>
       </li>
     </ul>
@@ -52,3 +52,4 @@
 <app-divident-released *ngIf="onDividendButtonClicked" (dividentData)="handleDividentData($event)"></app-divident-released>
 <app-divident-info *ngIf="onDividendButtonClicked" [divident]="dividends"></app-divident-info>
 <app-card *ngIf="!onDividendButtonClicked"></app-card>
+</body>

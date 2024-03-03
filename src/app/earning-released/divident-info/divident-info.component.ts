@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -20,6 +21,11 @@ export class DividentInfoComponent implements OnInit {
 
   sortDirection: number = 1; // 1 for ascending, -1 for descending
   sortColumn: string = 'dividend';
+  isToday(recordDate: string): boolean {
+    const today = new Date();
+    const formattedToday = formatDate(today, 'yyyy-MM-dd', 'en-US');
+    return recordDate === formattedToday;
+  }
 
   sortDividends(column: string): void {
     if (this.sortColumn === column) {
