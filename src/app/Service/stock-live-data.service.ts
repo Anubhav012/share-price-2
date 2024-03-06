@@ -63,7 +63,7 @@ export class StockLiveDataService {
       return this.getStockData(symbol);
     });
     // Use switchMap to handle multiple concurrent HTTP requests
-    return interval(30000) // Refresh every 30 seconds (30,000 milliseconds)
+    return interval(3600000) // Refresh every 60 minute (3600000 milliseconds)
       .pipe(
         switchMap(() => {
           return this.http.get<any[]>(`${this.apiUrl}all?filter=close&api_token=${this.apiToken}&fmt=json`);

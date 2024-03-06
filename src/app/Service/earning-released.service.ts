@@ -44,7 +44,7 @@ export class EarningDataService {
     // You can store the sanitizedData in the desired data structure or perform any other actions.
     // For example, if you want to store it in a property of the service:
     // this.storedData = sanitizedData;
-
+console.log('sanitizedData- ',sanitizedData);
     return sanitizedData;
   }
 }

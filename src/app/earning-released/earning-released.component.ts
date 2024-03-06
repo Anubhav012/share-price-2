@@ -49,8 +49,15 @@ export class EarningReleasedComponent implements OnInit {
     this.earningDataService.getEarningData().subscribe((data) => {
       this.filteredData = this.earningDataService.filterAndStoreData(data);
       console.log('Earning Data fetched for API -',this.filteredData);
-      this.earningCalendar.postEarningData(data);
-
+      console.log('this.filteredData',this.filteredData);
+      this.earningCalendar.postEarningData(this.filteredData).subscribe( (response) => {
+        // Handle the response
+        console.log('Post Earning Data Response:', response);
+      },
+      (error) => {
+        // Handle the error if needed
+        console.error('Post Earning Data Error:', error);
+      });
       // this.dividentEarningSharedService.childData$.subscribe((data) => {
       //   this.dividends= data;
       //   console.log(this.dividends);
