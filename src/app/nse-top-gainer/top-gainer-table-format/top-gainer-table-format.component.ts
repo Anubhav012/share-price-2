@@ -18,7 +18,7 @@ export class TopGainerTableFormatComponent implements OnInit {
   }
 
   sortDirection: number = 1; // 1 for ascending, -1 for descending
-  sortColumn: string = 'dayChangePerc'; // Default column to sort
+  sortColumn: string = 'dayChangePerc'; // Default column to sort 
 
   sortcompanyData(column: string): void {
     console.log('Sorting by column:', column);
