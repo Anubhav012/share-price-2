@@ -1,0 +1,32 @@
+
+<!-- Your existing table -->
+<table class="table" *ngIf="companyDataLive.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th>Company Name</th>
+        <th>Symbol</th>
+        <th>Prev Close (Rs)</th>
+        <th>Current Price (Rs)</th>
+        <th (click)="sortcompanyData('dayChangePerc')">% Change</th>
+        <th>Total Buy</th>
+        <th>Total Sell</th>
+        <th (click)="sortcompanyData('paymentDate')">% Buy</th>
+        <th (click)="sortcompanyData('volume')">Volume</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let companyData of companyDataLive; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ companyData.companyName }}</td>
+        <td>{{ companyData.symbol }}</td>
+        <td>{{ companyData.close }}</td>
+        <td>{{ companyData.ltp }}</td>
+        <td>{{ companyData.dayChangePerc | number:'.2-2' }}%</td>
+        <td>{{ companyData.totalBuyQty }}</td>
+        <td>{{ companyData.totalSellQty }}</td>
+        <td>{{ companyData.differencePercent }}%</td>
+        <td>{{ companyData.volume }}</td>
+      </tr>
+    </tbody>
+  </table>

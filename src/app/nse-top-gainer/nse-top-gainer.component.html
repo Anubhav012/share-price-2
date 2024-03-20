@@ -1,0 +1,20 @@
+<div class="container">
+  <form>
+    <label>
+      <input type="radio" name="viewOption" [(ngModel)]="selectedView" value="tableView" (change)="toggleView()"/>
+      <span>Table-View</span>
+    </label>
+    <label>
+      <input type="radio" name="viewOption" [(ngModel)]="selectedView" value="premiumView" (change)="toggleView()"/>
+      <span>Premium-View</span>
+    </label>
+  </form>
+</div>
+
+<ng-container *ngIf="selectedView === 'tableView'">
+  <app-top-gainer-table-format [companyData]="companyData"></app-top-gainer-table-format>
+</ng-container>
+
+<ng-container *ngIf="selectedView === 'premiumView'">
+  <app-top-gainer-premium-format [companyData]="companyData"></app-top-gainer-premium-format>
+</ng-container>

@@ -17,26 +17,34 @@ export class StockLiveDataService {
   constructor(private http: HttpClient,
     private dbRequestService: DbRequestService) {}
 
-   getStockName(){
-    this.dbRequestService.fetchData()
-    .subscribe(
-      Response => {
-        console.log('Response - ', Response[0]);
-        this.stockSymbols = Response.flatMap(item => Object.values(item).map(subItem => subItem.symbol)).filter(symbol => !!symbol);
-        console.log('this.stockSymbols - ', this.stockSymbols);
-
+    getStockName() {
+      this.dbRequestService.fetchData()
+        .subscribe(
+          Response => {
+            console.log('Response - ', Response[0]);
+            this.stockSymbols = Response.flatMap(item =>
+              Object.values(item)
+                .map(subItem => ({
+                  symbol: subItem.symbol,
+                  date: subItem.date
+                }))
+                .filter(subItem => {
+                  const subItemDate = new Date(subItem.date);
+                  const currentDate = new Date();
+                  const twoDaysAgo = new Date();
+                  twoDaysAgo.setDate(currentDate.getDate() - 2);
+                  const thirtyDaysAhead = new Date();
+                  thirtyDaysAhead.setDate(currentDate.getDate() + 30);
+                  return subItemDate >= twoDaysAgo && subItemDate <= thirtyDaysAhead;
+                })
+                .filter(subItem => subItem.symbol.endsWith('.NS'))
+                .map(subItem => subItem.symbol)
+            ).filter(symbol => !!symbol);
+    
+            console.log('this.stockSymbols - ', this.stockSymbols);
+          }
+        );
       }
-    );
-    // const stockSymbolsArray: DividendInfo[] = []; 
-    // stockSymbolsArray.push(this.dbRequestService.fetchDataa[0]);
-    // for(const items of stockSymbolsArray)
-    // {
-    //   for(const item of items){
-    //       this.stockSymbols.push(item.symbol);
-    //   }
-    // }
-    // console.log('stockSymbols - ',this.stockSymbols);
-   }
 
   // Fetch real-time stock data for a given symbol
   getStockData(symbol: string): Observable<any> {
@@ -47,6 +55,7 @@ export class StockLiveDataService {
 
   // Fetch real-time data for all stocks in the array
   getAllStockData(): Observable<any[]> {
+    this.getStockName();
     const requests = this.stockSymbols.map(symbol => {
       // Check if symbol ends with '.NS'
       if (symbol.endsWith('.NS')) {
@@ -54,7 +63,7 @@ export class StockLiveDataService {
         symbol = symbol.replace('.NS', '.NSE');
         if(symbol.includes('.NSE'))
         this.symbolsArray.push(symbol);
-        this.getStockName();
+        
 
       console.log('symbols array - ',this.symbolsArray);
       }

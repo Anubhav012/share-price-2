@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+  <!--  Thanks to frontendmentor.io for the challenge.  -->
+  
+<body>
+  <div class="bg">
+  </div>
+  <div class="nft">
+    <div class='main'>
+      <div class="card-body">
+      <div class="card">
+        <div class="container-card bg-green-box">
+          <p class="card-title-price">{{ companyData.ltp }}</p>
+          <p class="card-title">{{ companyData.dayChangePerc | number:'.2-2' }}%</p>
+        </div>
+      </div>
+    </div>
+
+<h6 class="company-name">{{ companyData.companyName }}</h6>
+      <!-- <h4>Large Cap Company</h4> -->
+      <div class='tokenInfo'>
+        <div class="price">
+          <ins>◘</ins>
+          <p class="total">{{ companyData.totalBuyQty }}</p>
+        </div>
+        <div class="duration">
+          <ins>◘</ins>
+          <p class="total">{{ companyData.totalSellQty }}</p>
+        </div>
+      </div>
+      <div class="change-percent-buy">
+        <p class="buy-percent">
+          <span class="buy-text">BUY is </span>
+          <span class="percent" [style.color]="companyData.differencePercent <= 0 ? 'red' : 'green'">{{ ' '+companyData.differencePercent }}%</span><br>
+          <span class="more-than-sell">more than SELL</span>
+        </p>      
+      </div>
+      <hr />
+      <div class='creator'>
+        <div class='wrapper'>
+          <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80" alt="Creator" />
+        </div>
+        <p><ins>Volume - </ins> {{ companyData.volume }}</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

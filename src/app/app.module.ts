@@ -12,6 +12,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DividentInfoComponent } from './earning-released/divident-info/divident-info.component';
 import { DatePipe } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+import { NSETopGainerComponent } from './nse-top-gainer/nse-top-gainer.component';
+import { CardV1Component } from './card-v1/card-v1.component';
+import { TopGainerTableFormatComponent } from './nse-top-gainer/top-gainer-table-format/top-gainer-table-format.component';
+import { TopGainerPremiumFormatComponent } from './nse-top-gainer/top-gainer-premium-format/top-gainer-premium-format.component';
 
 
 const appRoutes: Routes = [
@@ -38,7 +42,11 @@ const appRoutes: Routes = [
     CardComponent,
     EarningReleasedComponent,
     DividentReleasedComponent,
-    DividentInfoComponent
+    DividentInfoComponent,
+    NSETopGainerComponent,
+    CardV1Component,
+    TopGainerTableFormatComponent,
+    TopGainerPremiumFormatComponent
     ],
   imports: [BrowserModule,HttpClientModule,FormsModule,ReactiveFormsModule,AppRoutingModule],
   providers: [

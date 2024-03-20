@@ -1,0 +1,275 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: rgb(22, 20, 24);
+    color: #eee;
+    user-select: none;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+  
+  .nft {
+    user-select: none;
+    max-width: 300px;
+    margin: 5rem auto;
+    border: 1px solid #ffffff22;
+    background-color: #282c34;
+    background: linear-gradient(
+      0deg,
+      rgba(40, 44, 52, 1) 0%,
+      rgba(17, 0, 32, 0.5) 100%
+    );
+    box-shadow: 0 7px 20px 5px #00000088;
+    border-radius: 0.7rem;
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    overflow: hidden;
+    transition: 0.5s all;
+    hr {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #88888855;
+      margin-top: 0;
+    }
+    ins {
+      text-decoration: none;
+    }
+    .main {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      padding: 1rem;
+      .tokenImage {
+        border-radius: 0.5rem;
+        max-width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+      .description {
+        margin: 0.5rem 0;
+        color: #a89ec9;
+      }
+      .tokenInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .price {
+          display: flex;
+          align-items: center;
+          color: #83eea1;
+          font-weight: 700;
+          ins {
+            margin-left: -0.3rem;
+            margin-right: 0.5rem;
+          }
+        }
+        .duration {
+          display: flex;
+          align-items: center;
+          color: #be243b;
+          margin-right: 0.2rem;
+          ins {
+            margin: 0.5rem;
+            margin-bottom: 0.4rem;
+          }
+        }
+      }
+      .creator {
+        display: flex;
+        align-items: center;
+        margin-top: 0.2rem;
+        margin-bottom: -0.3rem;
+        ins {
+          color: #a89ec9;
+          text-decoration: none;
+        }
+        .wrapper {
+          display: flex;
+          align-items: center;
+          border: 1px solid #ffffff22;
+          padding: 0.3rem;
+          margin: 0;
+          margin-right: 0.5rem;
+          border-radius: 100%;
+          box-shadow: inset 0 0 0 4px #000000aa;
+          img {
+            border-radius: 100%;
+            border: 1px solid #ffffff22;
+            width: 2rem;
+            height: 2rem;
+            object-fit: cover;
+            margin: 0;
+          }
+        }
+      }
+    }
+    ::before {
+      position: fixed;
+      content: "";
+      box-shadow: 0 0 100px 40px #ffffff08;
+      top: -10%;
+      left: -100%;
+      transform: rotate(-45deg);
+      height: 60rem;
+      transition: 0.7s all;
+    }
+    &:hover {
+      border: 1px solid #ffffff44;
+      box-shadow: 0 7px 50px 10px #000000aa;
+      transform: scale(1.015);
+      filter: brightness(1.3);
+      ::before {
+        filter: brightness(0.5);
+        top: -100%;
+        left: 200%;
+      }
+    }
+  }
+  
+  .bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h1 {
+      font-size: 20rem;
+      filter: opacity(0.5);
+    }
+  }
+
+
+
+
+  
+
+  .card-title {
+    font-weight: 600;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 40px;
+    font-style: normal;
+    font-size: 28px;
+    padding-bottom: 8px;
+  }
+
+  .card {
+    max-width: 550px;
+    border: 0;
+    width: 100%;
+    margin-inline: auto;
+    background-color: black;
+  }
+
+
+  .bg-green-box,
+.bg-white-box,
+.bg-yellow-box,
+.bg-blue-box {
+  position: relative;
+}
+
+.bg-green-box::after,
+.bg-white-box::after,
+.bg-yellow-box::after,
+.bg-blue-box::after {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  content: "";
+  z-index: -1;
+  border-radius: 45px;
+}
+
+.bg-green-box::after {
+  background: linear-gradient(71deg, #0d1212, #3da077, #0d1212);
+}
+
+.bg-white-box::after {
+  background: linear-gradient(71deg, #121013, #b0afb0, #121013);
+}
+
+.bg-yellow-box::after {
+  background: linear-gradient(71deg, #110e0e, #afa220, #110e0e);
+}
+
+.bg-blue-box::after {
+  background: linear-gradient(71deg, #0c0a0e, #5f6fad, #0c0a0e);
+}
+
+.gradient-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  padding: 30px;
+  @media screen and (max-width: 991px) {
+    grid-template-columns: 1fr;
+  }
+}
+.card-title-price{
+  text-align: center;
+  padding: 0 !important;
+  margin-bottom: 0px;
+  font-size: 50px;
+  color: #2bc384;
+  font-weight: 600;
+  line-height: 60px;
+}
+
+.card-title {
+  text-align: center;
+  padding: 0 !important;
+  margin-bottom: 0px;
+  font-size: 30px;
+  color: #2bc384;
+  font-weight: 600;
+  line-height: 60px;
+}
+.container-card {
+  position: relative;
+  background: linear-gradient(71deg, #080509, #1a171c, #080509);
+  background-clip: padding-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ensure the container occupies the full height */
+}
+.company-name {
+  width: 240px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  padding-top: 10px; /* Add padding above */
+  padding-right: 35px; /* Move text 10px to the left */
+  overflow: hidden; /* Prevents overflow if the text is too long */
+  text-overflow: ellipsis; /* Adds ellipsis (...) if the text overflows the container */
+  white-space: nowrap; /* Prevents wrapping of text */
+  display: flex; /* Enable flexbox layout */
+  align-items: center; /* Vertically center the content */
+  justify-content: center; /* Horizontally center the content */
+}
+
+.buy-percent {
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  text-align: center; /* Center text horizontally */
+}
+.percent{
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 60px;
+}
+
+.total{
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 40px;
+}
