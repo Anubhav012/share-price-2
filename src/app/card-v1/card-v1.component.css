@@ -86,6 +86,7 @@ body {
         align-items: center;
         margin-top: 0.2rem;
         margin-bottom: -0.3rem;
+        justify-content: center;
         ins {
           color: #a89ec9;
           text-decoration: none;
@@ -272,4 +273,9 @@ body {
   font-size: 25px;
   font-weight: 400;
   line-height: 40px;
+}
+:host ::ng-deep
+.slider{
+  max-width: 300px;
+  height: 100px;
 }

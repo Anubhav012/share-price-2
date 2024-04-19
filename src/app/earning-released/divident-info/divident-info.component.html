@@ -22,6 +22,8 @@
       <th (click)="sortDividends('recordDate')">Record Date</th>
       <th (click)="sortDividends('date')">Date</th>
       <th (click)="sortDividends('paymentDate')">Payment Date</th>
+      <th (click)="sortDividends('DividendPrice')">Price</th>
+      <th>Percent</th>
     </tr>
   </thead>
   <tbody>
@@ -32,6 +34,8 @@
       <td>{{ dividend.recordDate }}</td>
       <td>{{ dividend.date }}</td>
       <td>{{ dividend.paymentDate }}</td>
+      <td>{{ dividend.ltp }}</td>
+      <td>{{ ((dividend.dividend) / dividend.ltp * 100).toFixed(2) }}%</td>
     </tr>
   </tbody>
 </table>

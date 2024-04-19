@@ -16,6 +16,10 @@ import { NSETopGainerComponent } from './nse-top-gainer/nse-top-gainer.component
 import { CardV1Component } from './card-v1/card-v1.component';
 import { TopGainerTableFormatComponent } from './nse-top-gainer/top-gainer-table-format/top-gainer-table-format.component';
 import { TopGainerPremiumFormatComponent } from './nse-top-gainer/top-gainer-premium-format/top-gainer-premium-format.component';
+import { SliderCardRangeComponent } from './card-v1/slider-card-range/slider-card-range.component';
+import { HoldingInfoComponent } from './holding-info/holding-info.component';
+import { LoginPageComponent } from './holding-info/login-page/login-page.component';
+import { EmailVerificationComponent } from './holding-info/login-page/email-verification/email-verification.component';
 
 
 const appRoutes: Routes = [
@@ -46,7 +50,11 @@ const appRoutes: Routes = [
     NSETopGainerComponent,
     CardV1Component,
     TopGainerTableFormatComponent,
-    TopGainerPremiumFormatComponent
+    TopGainerPremiumFormatComponent,
+    SliderCardRangeComponent,
+    HoldingInfoComponent,
+    LoginPageComponent,
+    EmailVerificationComponent
     ],
   imports: [BrowserModule,HttpClientModule,FormsModule,ReactiveFormsModule,AppRoutingModule],
   providers: [

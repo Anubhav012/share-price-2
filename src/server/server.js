@@ -87,13 +87,10 @@ async function fetchCompanyCodes(companyCodes, res) {
 async function fetchLiveData(companyCodess, res) {
   try {
     const apiUrll = 'https://groww.in/v1/api/stocks_data/v1/accord_points/exchange/NSE/segment/CASH/latest_prices_ohlc/';
-    debugger;
     for (let companyCode in companyCodess) {
-      debugger;
       console.log('Live dataaaa: ', companyCode);
         console.log('code1 -', companyCodess[companyCode]);
         let vv = apiUrll+companyCodess[companyCode]; 
-        debugger;
         console.log('vv', vv);
         const response = await axios.get(apiUrll + companyCodess[companyCode]);
         console.log(apiUrll + companyCodess[companyCode]);
@@ -111,6 +108,50 @@ async function fetchLiveData(companyCodess, res) {
   }
 }
 
+//--------------------- Fetch price of dividends -------------------------------------------
+
+// Endpoint to receive array of dividends
+app.get('/sendDividends', (req, res) => {
+  debugger
+  const dividends = req.query.dividends; // Assuming dividends are sent as query parameters
+  const symbolsArray = dividends.split(',');
+  console.log('Received dividends:', symbolsArray);
+  
+  // Process the received dividends if needed
+  
+  // Sending back a response (for demonstration purposes)
+  
+  const responseData = { message: 'Dividends received successfully' };
+  fetchLiveDataaa(symbolsArray,res)
+  // res.json(responseData);
+});
+
+async function fetchLiveDataaa(companyCodess, res) {
+  try {
+    debugger
+    const apiUrll = 'https://groww.in/v1/api/stocks_data/v1/accord_points/exchange/NSE/segment/CASH/latest_prices_ohlc/';
+    for (let i = 0; i < companyCodess.length; i++) {
+      console.log('Live dataaaa: ', i);
+      console.log('code1 -', companyCodess[i]);
+      let vv = apiUrll + companyCodess[i]; 
+      console.log('vv', vv);
+      try {
+        const response = await axios.get(apiUrll + companyCodess[i]);
+        console.log(apiUrll + companyCodess[i]);
+        const responseData = response.data;
+        console.log('responseData: ', responseData);
+        companyCodess[i] = responseData;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    console.log('Live data: ', companyCodess);
+    res.send(companyCodess);
+    console.log('Live data: ', companyCodess);
+  } catch (error) {
+    console.error('Error fetching live data:', error.message);
+  }
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
