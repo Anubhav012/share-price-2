@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { NSETopGainerService } from 'src/app/Express-Service/nse-top-gainer.service';
 import { DbRequestService } from 'src/app/Service/db-request.service';
 import { DividendInfo } from '../divident-released/dividend-info.model';
@@ -10,22 +10,56 @@ import { DividendInfo } from '../divident-released/dividend-info.model';
   styleUrls: ['./divident-info.component.css']
 })
 export class DividentInfoComponent implements OnInit {
-@Input() divident: any[] = [];
+@Input() divident: DividendInfo[] = [];
+@Input() showStickyNote!:boolean;
          dividendPrice: any[] = [];
          private stockSymbols: string[] = []; 
          private symbolsArray: string[] = [];
          count=0;
+         dividentDetails: DividendInfo[] = [];
+        //  showStickyNote: boolean = true; // Or false depending on your initial condition
          companyData: { companyName: string, [key: string]: any, differencePercent: number }[] = [];
 
 
   constructor(private NSETopGainerService:NSETopGainerService, private dbRequestService:DbRequestService) { }
 
+// Function to check if dividend percentage is greater than 2%
+isDividendGreaterThan2Percent(dividend: DividendInfo): boolean {
+  const today = new Date();
+  const recordDate = new Date(dividend.recordDate);
+  const twoDaysAgo = new Date();
+  twoDaysAgo.setDate(today.getDate() - 2);
+  
+
+  // Check if the record date is within the last 2 days
+  if (recordDate >= twoDaysAgo) {
+    console.log('recordDate ',recordDate);
+  console.log('twoDaysAgo ',twoDaysAgo);
+    const percentage = (dividend.dividend / dividend.ltp) * 100;
+    return percentage > 2; // Return true if the dividend percentage is greater than 2%
+  }
+
+  return false;
+}
+
+    // Property to store the number of dividends greater than 2%
+    numberOfDividendsGreaterThan2Percent: DividendInfo[] = [];
 
 
   ngOnInit(): void {
-    // this.getStockName();
-  }
 
+   
+  }
+    // this.getStockName();
+
+  // HostListener to handle clicks outside the sticky note
+  // @HostListener('document:click', ['$event'])
+  // onClick(event: MouseEvent) {
+  //   const stickyNoteElement = document.querySelector('.sticky-note');
+  //   if (stickyNoteElement && !stickyNoteElement.contains(event.target as Node)) {
+  //     this.showStickyNote = true; // Hide sticky note if click is outside it
+  //   }
+  // }
   get dividents(): any {
     const value = this.divident;
     if(value.length>1){
@@ -47,13 +81,27 @@ export class DividentInfoComponent implements OnInit {
           
           // If a matching item is found, update its properties with dividendItem
           if (matchingItemIndex !== -1) {
-              value[matchingItemIndex].ltp = dividendItem.ltp;
+              value[matchingItemIndex].ltp = dividendItem.pricecurrent;
+              value[matchingItemIndex].mnRange = dividendItem.mnRange;
+              value[matchingItemIndex].close = dividendItem.priceprevclose;
+              value[matchingItemIndex].wkChange = dividendItem.wkChange;
+              value[matchingItemIndex].mnChange = dividendItem.mnChange;
+              value[matchingItemIndex].wkRange = dividendItem.wkRange;
+              value[matchingItemIndex].mnRange = dividendItem.mnRange;
+              value[matchingItemIndex].dyChange = dividendItem.pricechange;
               // You can update other properties similarly if needed
           }
       });
         value.map(item => item.symbol)
       }
       console.log('value after - ',value);
+      if(value[0].ltp){
+        this.dividentDetails=value;
+
+        // Calculate the number of dividends greater than 2% during component initialization
+        this.numberOfDividendsGreaterThan2Percent = this.dividentDetails.filter((divident: DividendInfo) => this.isDividendGreaterThan2Percent(divident));
+        console.log("this.numberOfDividendsGreaterThan2Percent  -", this.numberOfDividendsGreaterThan2Percent);
+      }
     return value;
 }
   
@@ -90,7 +138,7 @@ sendDataToServer(data: string[]): void {
     return recordDate === formattedToday;
   }
 
-  sortDividends(column: string): void {
+  sortDividends(column: keyof DividendInfo): void {
     if (this.sortColumn === column) {
       this.sortDirection = -this.sortDirection; // Change direction if same column is clicked again
     } else {
@@ -98,17 +146,19 @@ sendDataToServer(data: string[]): void {
       this.sortDirection = 1; // Default to ascending when a new column is clicked
     }
 
-    this.divident.sort((a, b) => {
+    this.divident.sort((a: DividendInfo, b: DividendInfo) => {
       const aValue = a[column];
       const bValue = b[column];
 
-      if (aValue < bValue) {
-        return -this.sortDirection;
-      } else if (aValue > bValue) {
-        return this.sortDirection;
-      } else {
-        return 0;
+      if (aValue !== null && bValue !== null) {
+        if (aValue < bValue) {
+          return -this.sortDirection;
+        } else if (aValue > bValue) {
+          return this.sortDirection;
+        }
       }
+      
+      return 0;
     });
   }
 }

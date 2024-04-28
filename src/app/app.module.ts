@@ -20,6 +20,7 @@ import { SliderCardRangeComponent } from './card-v1/slider-card-range/slider-car
 import { HoldingInfoComponent } from './holding-info/holding-info.component';
 import { LoginPageComponent } from './holding-info/login-page/login-page.component';
 import { EmailVerificationComponent } from './holding-info/login-page/email-verification/email-verification.component';
+import { StickyDividendNoteComponent } from './earning-released/sticky-dividend-note/sticky-dividend-note.component';
 
 
 const appRoutes: Routes = [
@@ -54,7 +55,8 @@ const appRoutes: Routes = [
     SliderCardRangeComponent,
     HoldingInfoComponent,
     LoginPageComponent,
-    EmailVerificationComponent
+    EmailVerificationComponent,
+    StickyDividendNoteComponent
     ],
   imports: [BrowserModule,HttpClientModule,FormsModule,ReactiveFormsModule,AppRoutingModule],
   providers: [

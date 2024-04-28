@@ -26,6 +26,9 @@
       <li class="nav-item" role="presentation">
         <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'dividend'" id="dividend-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('dividend')">Dividend</button>
       <div class="calendar"></div>
+      <li class="nav-item" role="presentation" *ngIf="activeTab === 'dividend'">
+        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="dividend-notes-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClickOf_Dividend_notes()">Dividend Notes</button>
+      <div class="calendar"></div>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" [formGroup]="searchForm">
@@ -50,6 +53,6 @@
   </div>
 </nav>
 <app-divident-released *ngIf="onDividendButtonClicked" (dividentData)="handleDividentData($event)"></app-divident-released>
-<app-divident-info *ngIf="onDividendButtonClicked" [divident]="dividends"></app-divident-info>
+<app-divident-info *ngIf="onDividendButtonClicked" [divident]="dividends" [showStickyNote]="dividendNote"></app-divident-info>
 <app-card *ngIf="!onDividendButtonClicked"></app-card>
 </body>

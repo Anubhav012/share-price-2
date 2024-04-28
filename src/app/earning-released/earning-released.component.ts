@@ -22,8 +22,9 @@ export class EarningReleasedComponent implements OnInit {
   startDate ='';
   endDate='';
   onDividendButtonClicked=false;
+  dividendNote: boolean = false;
 
-  activeTab: string = 'today'; // Default active tab is 'Today'
+  activeTab: string = 'dividend'; // Default active tab is 'Today'
 
   constructor(private earningDataService: EarningDataService,
     private dividentEarningSharedService: DividentEarningSharedService,
@@ -184,6 +185,16 @@ export class EarningReleasedComponent implements OnInit {
     this.onDividendButtonClicked=true;
     this.activeTab = 'dividend'; 
   }
+
+  onClickOf_Dividend_notes(){
+    this.activeTab = 'dividend'; 
+    this.dividendNote = !this.dividendNote;
+    let audio =new Audio();
+    audio.src="../assets/sticksound.wav";
+    audio.load();
+    audio.play();
+
+}
   
   
 

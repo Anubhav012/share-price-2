@@ -176,3 +176,66 @@ body {
 .table{
   width: 1800px;
 }
+
+/* Loading Animation Container */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust as needed */
+}
+
+.divider {
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+.loading-text {
+  font-size: 24px; /* Adjust as needed */
+}
+
+.letter {
+  animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px); /* Adjust bounce height as needed */
+  }
+}
+
+/* Your existing table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  border: 1px solid #ddd; /* Adjust border color as needed */
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2; /* Adjust header background color as needed */
+  font-weight: bold;
+}
+
+.bold-row {
+  font-weight: bold;
+}
+
+/* Sticky Dividend Note */
+.sticky-note {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent; /* Remove background color */
+  z-index: 999; /* Ensure it's above other elements */
+}

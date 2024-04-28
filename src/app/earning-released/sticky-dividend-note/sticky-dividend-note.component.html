@@ -1,0 +1,53 @@
+<div class='post-it' contenteditable>
+    <!-- <h5>Upcoming dividend greater than 2%</h5> -->
+    <div >
+      <table class="container">
+        <thead>
+          <tr>
+            <th><h6>Ex-Date</h6></th>
+            <th><h6>Company</h6></th>
+            <th><h6>Dividend</h6></th>
+            <th><h6>Price</h6></th>
+            <th><h6>Percentage</h6></th>
+            <th><h6>1D Change</h6></th>
+            <th><h6>1W Change</h6></th>
+            <th><h6>1M Change</h6></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dividendItem of dividend">
+            <td>{{ dividendItem.date }}</td>
+            <td>{{ dividendItem.symbol }}</td>
+            <td id="dividend">{{ dividendItem.dividend }}</td>
+            <td>
+                {{ dividendItem.ltp }} 
+                <span [ngClass]="{ 'positive': dividendItem.dyChange > 0, 'negative': dividendItem.dayChangePerc < 0 }">
+                  (<span style="font-size: 80%;">{{ dividendItem.dyChange.toFixed(1) }}%</span>)
+                </span>
+              </td>
+            <td id="dividend">{{ ((dividendItem.dividend) / dividendItem.ltp * 100).toFixed(2) }}%</td>
+            <td>{{ dividendItem.close }}</td>
+            <td>
+              {{ dividendItem.wkRange.toFixed(1)  }} 
+              <span [ngClass]="{ 'positive': dividendItem.wkChange > 0, 'negative': dividendItem.wkChange < 0 }">
+                (<span style="font-size: 80%;">{{ dividendItem.wkChange.toFixed(1) }}%</span>)
+              </span>
+            </td>
+            <td>
+              {{ dividendItem.mnRange.toFixed(1)  }} 
+              <span [ngClass]="{ 'positive': dividendItem.mnChange > 0, 'negative': dividendItem.mnChange < 0 }">
+                (<span style="font-size: 80%;">{{ dividendItem.mnChange.toFixed(1) }}%</span>)
+              </span>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+<audio #audioStickyNoteOn>
+    <source src="../Music/sticksound.mp3" type="audio/mpeg">
+</audio>
+<audio #audioStickyNoteOff src="Music/sticksound.mp3" type="audio/mpeg"></audio>

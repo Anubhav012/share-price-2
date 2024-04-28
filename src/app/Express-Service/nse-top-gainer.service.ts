@@ -11,17 +11,17 @@ export class NSETopGainerService {
 
   constructor(private http: HttpClient) {}
 
-  fetchData(): Observable<any> {
-    // Use interval to emit a value every 5 seconds
-    return interval(10000).pipe(
-      // Use switchMap to cancel previous requests if a new one comes in
-      switchMap(() => this.http.get<any>('http://localhost:3000/api'))
-    );
-  }
+  // fetchData(): Observable<any> {
+  //   // Use interval to emit a value every 5 seconds
+  //   return interval(10000).pipe(
+  //     // Use switchMap to cancel previous requests if a new one comes in
+  //     switchMap(() => this.http.get<any>('http://localhost:3000/api'))
+  //   );
+  // }
 
-// fetchData(): Observable<any> {
-//   return this.http.get<any>('http://localhost:3000/api');
-// }
+fetchData(): Observable<any> {
+  return this.http.get<any>('http://localhost:3000/api');
+}
 
 
 fetchDividends(dividends: string): Observable<any> {
@@ -29,6 +29,4 @@ fetchDividends(dividends: string): Observable<any> {
   console.log('dividends - - ',dividends)
   return this.http.get<any>(url);
 }
-
-
 }

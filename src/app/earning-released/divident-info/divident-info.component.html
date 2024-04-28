@@ -39,3 +39,4 @@
     </tr>
   </tbody>
 </table>
+  <app-sticky-dividend-note *ngIf="showStickyNote && numberOfDividendsGreaterThan2Percent.length>0" class="sticky-note" [dividend]="numberOfDividendsGreaterThan2Percent"></app-sticky-dividend-note>
