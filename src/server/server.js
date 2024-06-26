@@ -6,7 +6,7 @@ const request = require('request');
 const WebSocket = require('ws'); // Import WebSocket library
 const app = express();
 const fs = require('fs');
-
+const unirest = require('unirest');
 // app.use(cors()); // Enable CORS
 
 
@@ -17,6 +17,7 @@ app.use(cors({
 app.get('/api', function(req, res) {
   var url = 'https://money.rediff.com/gainers/nse/daily/groupall';
   request(url, function(error, response, html) {
+    debugger;
     if (!error) {
         var $ = cheerio.load(html);
         var company = [],
@@ -358,6 +359,88 @@ async function fetchLiveDatafromZerodha(companyCodess, res) {
     console.error('Error fetching live data:', error.message);
   }
 }
+
+
+
+//--------------------- Fetch Financial_News from Google finance -------------------------------------------
+
+// Define an endpoint to serve financial news data
+app.get('/googleNews', async (req, res) => {
+  try {
+    let financialNews = [];
+    // Keep fetching financial news data until it is not empty
+    while (financialNews.length === 0) {
+      financialNews = await getFinanceData();
+      if (financialNews.length >0){
+        console.log("financialNews - ", financialNews);
+        res.json(financialNews);
+      }
+      // If financial news is still empty, wait for 1 seconds before fetching again
+      if (financialNews.length === 0) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+      }
+    }
+  }
+  catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+const getFinanceData = async () => {
+  try {
+    const url = "https://www.google.com/finance/?hl=en";
+    const response = await axios.get(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36"
+      }
+    });
+
+    const $ = cheerio.load(response.data);
+
+    let financial_news = [];
+    let shortStockNews = [];
+    $(".yY3Lee").each((i, el) => {
+      let newsItem = {
+        title: $(el).find(".Yfwt5").text(),
+        link: $(el).find("a").attr("href"),
+        source: $(el).find(".sfyJob").text(),
+        time: $(el).find(".Adak").text(),
+        imgURL: $(el).find("img").attr("src"),
+        shortStock: [] // Initialize shortStock as an empty array
+      };
+    
+      // Iterate over each span within data-is-tooltip-wrapper
+      $(el).find("span[data-is-tooltip-wrapper]").each((i, span) => {
+        let name = $(span).find(".EY8ABd-OWXEXe-TAWMXe").text();
+        let percent = $(span).find(".JwB6zf").text();
+        let path = $(".yY3Lee path").attr("d");
+        newsItem.shortStock.push({ name, percent, path }); // Push the data to shortStock array
+      });
+    
+      financial_news.push(newsItem); // Push the news item to financial_news array
+    });
+    
+    console.log("financial_news:", financial_news);
+    
+    return financial_news;
+  } catch (error) {
+    console.error("Error:", error);
+    return [];
+  }
+};
+
+const fetchFinanceData = async () => {
+  let financialNews = [];
+  while (financialNews.length === 0) {
+    financialNews = await getFinanceData();
+    await new Promise(resolve => setTimeout(resolve, 30000)); // Wait for 30 seconds before fetching again
+  }
+};
+
+fetchFinanceData();
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

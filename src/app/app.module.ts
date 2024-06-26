@@ -21,6 +21,9 @@ import { HoldingInfoComponent } from './holding-info/holding-info.component';
 import { LoginPageComponent } from './holding-info/login-page/login-page.component';
 import { EmailVerificationComponent } from './holding-info/login-page/email-verification/email-verification.component';
 import { StickyDividendNoteComponent } from './earning-released/sticky-dividend-note/sticky-dividend-note.component';
+import { LiveNewsComponent } from './live-news/live-news.component';
+import { NewsDataComponent } from './live-news/news-data/news-data.component';
+import { WatchListComponent } from './live-news/watch-list/watch-list.component';
 
 
 const appRoutes: Routes = [
@@ -56,7 +59,10 @@ const appRoutes: Routes = [
     HoldingInfoComponent,
     LoginPageComponent,
     EmailVerificationComponent,
-    StickyDividendNoteComponent
+    StickyDividendNoteComponent,
+    LiveNewsComponent,
+    NewsDataComponent,
+    WatchListComponent
     ],
   imports: [BrowserModule,HttpClientModule,FormsModule,ReactiveFormsModule,AppRoutingModule],
   providers: [

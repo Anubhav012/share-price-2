@@ -29,4 +29,15 @@ fetchDividends(dividends: string): Observable<any> {
   console.log('dividends - - ',dividends)
   return this.http.get<any>(url);
 }
+
+fetchNews(): Observable<any> {
+   // Use interval to emit a value every 30 seconds
+    // return interval(1000).pipe(
+    //   // Use switchMap to cancel previous requests if a new one comes in
+    //   switchMap(() => this.http.get<any>('http://localhost:3000/googleNews'))
+    // );
+
+    return  this.http.get<any>('http://localhost:3000/googleNews');
+  }
+
 }

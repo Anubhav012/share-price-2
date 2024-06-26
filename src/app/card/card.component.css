@@ -1,10 +1,12 @@
 /* card.component.css */
 .earnings-card {
-    border: 1px solid #ccc;
+    border: 1px solid #000;
     padding: 15px;
     width: 300px;
-    background-color: #b9d1df;
+    background-color:RGBA(0,0,0,0.9);
     text-align: center;
+    border-radius: 10px;
+    margin: 10px;
 }
 .flex-containerCompany{
   padding-right: 30px;
@@ -89,3 +91,10 @@
     display: inline; 
   }
 
+  .Earning-table-body-column{
+    color: #bcc3eb;
+  }
+
+  .Earning-value{
+    color: #f2f2f2;
+  }

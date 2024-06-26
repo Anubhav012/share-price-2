@@ -119,7 +119,7 @@ padding: 5px; }
 text-align:center; }
 
 .container tr:hover {
-   background-color: #464A52;
+   background-color: transparent;
 -webkit-box-shadow: 0 6px 6px -6px #0E1119;
 	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
 	        box-shadow: 0 6px 6px -6px #0E1119;
@@ -150,4 +150,8 @@ text-align:center; }
   
   .negative {
     color: red;
+  }
+
+  h6{
+    font-size: 0.8rem;
   }

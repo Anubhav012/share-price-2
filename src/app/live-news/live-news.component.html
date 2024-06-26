@@ -1,0 +1,22 @@
+<ng-container class="watchlist" *ngIf="WatchList">
+    <app-watch-list></app-watch-list>
+</ng-container>
+<div class="news">
+    <div class="head">
+        <button class="glow-on-hover" onclick="" type="button">Market News</button>
+        <button class="glow-on-hover" onclick="" type="button">Stocks</button>
+        <button class="glow-on-hover" onclick="" type="button">Finance</button>
+        <button class="glow-on-hover" (click)="watchlist()" type="button">WatchList</button>
+    </div>
+    <hr>
+    <div class="body">
+        <ng-container *ngFor="let newsItem of googleNews">
+            <app-news-data [News]="newsItem"></app-news-data>
+        </ng-container>   
+        <div class="loader" *ngIf="loading"></div>
+     </div>
+</div>
+
+
+
+

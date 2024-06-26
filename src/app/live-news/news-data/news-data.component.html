@@ -1,0 +1,49 @@
+<div class="body">
+    <div class="live-news-block glow-on-hover">
+        <a [href]="News.link" class="a-1" target="_blank">
+        <div class="upper-body">
+            <div class="upper-news-details">
+                <div class="news-info">
+                    <div class="news-page-name">{{ News.source }}</div>
+                    <div class="news-time">{{ News.time }}</div>
+                </div>
+                <div class="news-details">
+                    <p id="news-details-p">
+                        {{ News.title }}
+                    </p>
+                </div>
+            </div>
+            <div class="image-class">
+                <a href="abc">
+                    <img [src]="News.imgURL" alt="{{ News.title }}">
+                </a>
+            </div>
+        </div>
+        </a>
+        <div class="lower-body">
+            <span class="short-stock-info" *ngIf="short_stock_info">
+                <a href="" target="_blank">
+                    <span class="short-container">
+                        <span class="short-stock-name">{{shortStock.name}}</span>
+                        <span class="short-stock-price-container" [ngClass]="{'green': priceGain, 'red': priceLoss}">
+                            <div *ngIf="priceGain">
+                                <svg focusable="true" width="13" height="30" viewBox="0 0 24 24" class="NMm5M">
+                                    <g transform="translate(0,-14)"> 
+                                        <path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"></path>
+                                    </g>
+                                </svg>
+                            <div *ngIf="priceLoss">
+                                <svg focusable="true" width="13" height="30" viewBox="0 0 24 24" class="NMm5M">
+                                    <g transform="translate(0,-14)"> 
+                                        <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"></path>                                        </g>
+                                </svg>       
+                            </div>
+                        </div>
+                            <span class="short-stock-price">{{shortStock.percent}}</span>
+                        </span>
+                    </span>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>

@@ -8,7 +8,9 @@ README.md
 /bazel-out
 
 # Node
+/src/server/node_modules
 /node_modules
+src/server/node_modules/
 npm-debug.log
 yarn-error.log
 

@@ -97,5 +97,31 @@ head {
   .active {
     background-color: lightslategray;
     color: white;
+    
   }
   
+  body{
+    background-color:RGBA(0,0,0,0.84);
+    height: 1000px;
+  }
+  .container-nav{
+    max-height: 120px;
+  }
+    body, .container {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+  }
+  .container {
+      display: flex;
+      max-height: 100%;
+      max-width: 100%;
+  }
+  .card-div{
+    flex: 0 0 75%;
+  }
+  .news-div{
+    flex: 0 0 25%;
+    margin-left: auto;
+    border-radius: 50px;
+  }

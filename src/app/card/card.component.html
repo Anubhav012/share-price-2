@@ -1,7 +1,7 @@
 <li class="earnings-card">
     <div class="flex-containerCompany " style="display: inline;">
-      <p class="date" style="display: inline;">{{ date }}</p>
-      <span class="rightSide" style="display: inline;">Rs.Cr.</span>
+      <p class="date Earning-value" style="display: inline;">{{ date }}</p>
+      <span class="rightSide Earning-table-body-column" style="display: inline;">Rs.Cr.</span>
     </div>
     <div class="flex-containerCompany">
       <h3 class="company-name" style="display: inline;">
@@ -23,26 +23,26 @@
       </thead>
       <tbody>
         <tr>
-          <td>Revenue</td>
+          <td class="Earning-table-body-column">Revenue</td>
           <td>{{ revenueQ3FY23 }}</td>
           <td>{{ revenueDec23 }}</td>
           <td [class.greentext]="{'greentext': revenueGrowth >0, 'redtext': revenueGrowth < 0}">{{ revenueGrowth }}%</td>
         </tr>
         <tr>
-          <td>Gross Profit</td>
+          <td class="Earning-table-body-column">Gross Profit</td>
           <td>{{ grossProfitQ3FY23 }}</td>
           <td>{{ grossProfitDec23 }}</td>
           <td [class.greentext]="{'greentext': grossProfitGrowth >0, 'redtext': grossProfitGrowth < 0}">{{ grossProfitGrowth }}%</td>
         </tr>
         <tr>
-          <td>Net Profit</td>
+          <td class="Earning-table-body-column">Net Profit</td>
           <td>{{ netProfitQ3FY23 }}</td>
           <td>{{ netProfitDec23 }}</td>
           <td [class.greentext]="{'greentext': netProfitGrowth >0, 'redtext': netProfitGrowth < 0}">{{ netProfitGrowth }}%</td>
         </tr>
       </tbody>
     </table>
-    <div class="Divident">
+    <div class="Divident Earning-table-body-column">
       <span *ngIf="!displayDividentDate; else showFullTable;">
       <p class="Divided" style="display: inline;">Divident - {{ Divident }}</p>
       <!-- <button class="DividentMode" (click)="displayDate()" style="display: inline;">More Info</button> -->
@@ -51,17 +51,17 @@
       <ng-template #showFullTable>
       <table>
         <thead>
-          <th width="25%">Divident</th>
-          <th width="25%">Record Date</th>
-          <th width="25%">Ex-Date</th>
-          <th width="25%">Pay Date</th>
+          <th class="Earning-table-body-column" width="25%">Divident</th>
+          <th class="Earning-table-body-column" width="25%">Record Date</th>
+          <th class="Earning-table-body-column" width="25%">Ex-Date</th>
+          <th class="Earning-table-body-column" width="25%">Pay Date</th>
         </thead>
         <tbody>
           <tr>
             <td>{{Divident}}</td>
-            <td class=" DividentValue">{{RecordDate}}</td>
-            <td class=" DividentValue">{{ExDate}}</td>
-            <td class=" DividentValue">{{PayDate}}</td>
+            <td class=" DividentValue Earning-value">{{RecordDate}}</td>
+            <td class=" DividentValue Earning-value">{{ExDate}}</td>
+            <td class=" DividentValue Earning-value">{{PayDate}}</td>
           </tr>
         </tbody>
       </table>

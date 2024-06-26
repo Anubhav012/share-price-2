@@ -58,3 +58,6 @@ span.light {
   }
 } */
 
+html, body {
+  height: 100%;
+}

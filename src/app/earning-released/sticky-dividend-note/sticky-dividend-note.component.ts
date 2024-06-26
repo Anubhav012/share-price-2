@@ -21,6 +21,19 @@ console.log('StickyNotedividend - ',this.dividend);
     
   }
 
+  getFormattedValue(value: number | string | undefined): string {
+    if (typeof value === 'number') {
+      return value.toFixed(1);
+    } else if (typeof value === 'string') {
+      const parsedValue = parseFloat(value);
+      if (!isNaN(parsedValue)) {
+        return parsedValue.toFixed(1) + '%';
+      }
+    }
+    return 'N/A';
+  }
+  
+
   toggleStickyNote() {
     this.showStickyNote = !this.showStickyNote; // Toggle the boolean value
   

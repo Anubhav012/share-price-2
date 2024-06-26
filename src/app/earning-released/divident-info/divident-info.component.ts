@@ -33,8 +33,6 @@ isDividendGreaterThan2Percent(dividend: DividendInfo): boolean {
 
   // Check if the record date is within the last 2 days
   if (recordDate >= twoDaysAgo) {
-    console.log('recordDate ',recordDate);
-  console.log('twoDaysAgo ',twoDaysAgo);
     const percentage = (dividend.dividend / dividend.ltp) * 100;
     return percentage > 2; // Return true if the dividend percentage is greater than 2%
   }
@@ -71,7 +69,8 @@ isDividendGreaterThan2Percent(dividend: DividendInfo): boolean {
     }}
       console.log('dividendPrice -',this.dividendPrice);
       console.log('vlaue -', value);
-      if(this.dividendPrice.length==value.length)
+      console.log('dividendPrice Length -',this.dividendPrice.length);
+      if(this.dividendPrice.length>0)
       {
         console.log('symbol found after - ',this.dividendPrice.map(item => item.symbol));
 
@@ -82,13 +81,13 @@ isDividendGreaterThan2Percent(dividend: DividendInfo): boolean {
           // If a matching item is found, update its properties with dividendItem
           if (matchingItemIndex !== -1) {
               value[matchingItemIndex].ltp = dividendItem.pricecurrent;
-              value[matchingItemIndex].mnRange = dividendItem.mnRange;
+              // value[matchingItemIndex].mnRange = dividendItem.mnRange;
               value[matchingItemIndex].close = dividendItem.priceprevclose;
-              value[matchingItemIndex].wkChange = dividendItem.wkChange;
-              value[matchingItemIndex].mnChange = dividendItem.mnChange;
-              value[matchingItemIndex].wkRange = dividendItem.wkRange;
-              value[matchingItemIndex].mnRange = dividendItem.mnRange;
-              value[matchingItemIndex].dyChange = dividendItem.pricechange;
+              value[matchingItemIndex].wkRange = dividendItem.pricecurrent - dividendItem.cl1wChange;
+              value[matchingItemIndex].mnRange = dividendItem.pricecurrent - dividendItem.cl1mChange;
+              value[matchingItemIndex].wkChange = dividendItem.cl1wPerChange;
+              value[matchingItemIndex].mnChange = dividendItem.cl1mPerChange;
+              value[matchingItemIndex].dyChange = dividendItem.pricepercentchange;
               // You can update other properties similarly if needed
           }
       });

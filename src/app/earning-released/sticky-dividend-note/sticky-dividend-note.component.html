@@ -7,8 +7,8 @@
             <th><h6>Ex-Date</h6></th>
             <th><h6>Company</h6></th>
             <th><h6>Dividend</h6></th>
-            <th><h6>Price</h6></th>
             <th><h6>Percentage</h6></th>
+            <th><h6>Price</h6></th>
             <th><h6>1D Change</h6></th>
             <th><h6>1W Change</h6></th>
             <th><h6>1M Change</h6></th>
@@ -19,24 +19,26 @@
             <td>{{ dividendItem.date }}</td>
             <td>{{ dividendItem.symbol }}</td>
             <td id="dividend">{{ dividendItem.dividend }}</td>
+            <td id="dividend">{{ getFormattedValue((dividendItem.dividend) / dividendItem.ltp * 100)}}</td>
             <td>
-                {{ dividendItem.ltp }} 
-                <span [ngClass]="{ 'positive': dividendItem.dyChange > 0, 'negative': dividendItem.dayChangePerc < 0 }">
-                  (<span style="font-size: 80%;">{{ dividendItem.dyChange.toFixed(1) }}%</span>)
+              {{ dividendItem.ltp }} 
+              <span [ngClass]="{ 'positive': dividendItem.dyChange > 0, 'negative': dividendItem.dyChange < 0 }">
+                <span style="font-size: 80%;">
+                  {{ getFormattedValue(dividendItem.dyChange) }}
                 </span>
-              </td>
-            <td id="dividend">{{ ((dividendItem.dividend) / dividendItem.ltp * 100).toFixed(2) }}%</td>
+              </span>
+            </td>
             <td>{{ dividendItem.close }}</td>
             <td>
-              {{ dividendItem.wkRange.toFixed(1)  }} 
+              {{ getFormattedValue(dividendItem.wkRange) }} 
               <span [ngClass]="{ 'positive': dividendItem.wkChange > 0, 'negative': dividendItem.wkChange < 0 }">
-                (<span style="font-size: 80%;">{{ dividendItem.wkChange.toFixed(1) }}%</span>)
+                (<span style="font-size: 80%;">{{ getFormattedValue(dividendItem.wkChange +'%') }}</span>)
               </span>
             </td>
             <td>
-              {{ dividendItem.mnRange.toFixed(1)  }} 
+              {{ getFormattedValue(dividendItem.mnRange)  }} 
               <span [ngClass]="{ 'positive': dividendItem.mnChange > 0, 'negative': dividendItem.mnChange < 0 }">
-                (<span style="font-size: 80%;">{{ dividendItem.mnChange.toFixed(1) }}%</span>)
+                (<span style="font-size: 80%;">{{ getFormattedValue(dividendItem.mnChange +'%')}}</span>)
               </span>
             </td>
 

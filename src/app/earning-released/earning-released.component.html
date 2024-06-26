@@ -2,57 +2,66 @@
     {{ item.symbol }} - {{ item.title }}
   </div> -->
   <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #0e8be5;">
-  <div class="container-fluid">
-    <ul class="nav nav-pills nav-fill gap-2 p-1 small" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-black); --bs-nav-pills-link-active-color: var(--bs-light); --bs-nav-pills-link-active-bg: var(--bs-primary);">
-      <li class="nav-item" role="presentation">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'yesterday'" id="yesterday-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('yesterday')">Yesterday</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'today'" id="today-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('today')">Today</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'tomorrow'" id="tomorrow-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('tomorrow')">Tomorrow</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'this-week'" id="this-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('this-week')">This Week</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'next-week'" id="next-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('next-week')">Next Week</button>
-      </li>
-      <li class="nav-item" role="presentation">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'custom-date'" id="custom-date-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('custom-date')">Custom Date</button>
-        <div class="calendar"></div>
-      <li class="nav-item" role="presentation">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'dividend'" id="dividend-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('dividend')">Dividend</button>
-      <div class="calendar"></div>
-      <li class="nav-item" role="presentation" *ngIf="activeTab === 'dividend'">
-        <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="dividend-notes-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClickOf_Dividend_notes()">Dividend Notes</button>
-      <div class="calendar"></div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0" [formGroup]="searchForm">
-      <div class="input-group">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" formControlName="query">
-        <div class="input-group-append">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+    <div class="container-nav">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #0e8be5;">
+        <div class="container-fluid">
+          <ul class="nav nav-pills nav-fill gap-2 p-1 small" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-black); --bs-nav-pills-link-active-color: var(--bs-light); --bs-nav-pills-link-active-bg: var(--bs-primary);">
+            <li class="nav-item" role="presentation">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'yesterday'" id="yesterday-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('yesterday')">Yesterday</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'today'" id="today-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('today')">Today</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'tomorrow'" id="tomorrow-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('tomorrow')">Tomorrow</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'this-week'" id="this-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('this-week')">This Week</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'next-week'" id="next-week-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('next-week')">Next Week</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'custom-date'" id="custom-date-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('custom-date')">Custom Date</button>
+              <div class="calendar"></div>
+            <li class="nav-item" role="presentation">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" [class.active]="activeTab === 'dividend'" id="dividend-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClick('dividend')">Dividend</button>
+            <div class="calendar"></div>
+            <li class="nav-item" role="presentation" *ngIf="activeTab === 'dividend'">
+              <button class="btn btn--border btn--primary btn--animated" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="dividend-notes-tab" data-bs-toggle="tab" type="button" role="tab" (click)="onClickOf_Dividend_notes()">Dividend Notes</button>
+            <div class="calendar"></div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0" [formGroup]="searchForm">
+            <div class="input-group">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" formControlName="query">
+              <div class="input-group-append">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </div>
+            </div>
+          
+            <!-- Display the dropdown with search results -->
+            <div *ngIf="searchResults.length > 0" class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Search Results
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <!-- Display top 5 search results -->
+                <a *ngFor="let result of searchResults.slice(0, 5)" class="dropdown-item" (click)="selectResult(result)">{{ result.symbol }}</a>
+              </div>
+            </div>
+          </form>
         </div>
-      </div>
-    
-      <!-- Display the dropdown with search results -->
-      <div *ngIf="searchResults.length > 0" class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Search Results
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <!-- Display top 5 search results -->
-          <a *ngFor="let result of searchResults.slice(0, 5)" class="dropdown-item" (click)="selectResult(result)">{{ result.symbol }}</a>
-        </div>
-      </div>
-    </form>
-  </div>
-</nav>
+      </nav>
+</div>
 <app-divident-released *ngIf="onDividendButtonClicked" (dividentData)="handleDividentData($event)"></app-divident-released>
 <app-divident-info *ngIf="onDividendButtonClicked" [divident]="dividends" [showStickyNote]="dividendNote"></app-divident-info>
-<app-card *ngIf="!onDividendButtonClicked"></app-card>
+<div class="container">
+  <div class="card-div">
+    <app-card class="card-div" *ngIf="!onDividendButtonClicked"></app-card>
+</div>
+<div class="news-div" *ngIf="!onDividendButtonClicked">
+    <app-live-news></app-live-news>
+</div>
+</div>
 </body>
